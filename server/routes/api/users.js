@@ -26,25 +26,20 @@ router.post('/', async (req, res) => {
 
 // Edit Contact
 
-// router.put('/:id', async (req, res) => {
-// 	const posts = await loadUsersCollection();
-// 	await posts.findOneAndUpdate(
-// 		new mongodb.ObjectID(req.params.id),
-// 		{
-// 			Attribute: 'good',
-// 		},
-// 		{
-// 			$set: {
-// 				Type: 'DVD',
-// 				Title: 'Matrix, The',
-// 				Released: 1999,
-// 				Genre: 'Action',
-// 			},
-// 		},
-// 		{ upsert: true }
-// 	);
-// 	res.status(200).send();
-// });
+router.put('/:id', async (req, res) => {
+	const posts = await loadUsersCollection();
+	await posts.updateOne(
+		{
+			name: req.body.name,
+			phone_num: req.body.phone_num,
+			email: req.body.email,
+			imgUrl: req.body.imgUrl,
+		},
+		{ $set: req.body },
+		{ new: true, upsert: true, returnOriginal: false }
+	);
+	res.status(200).send();
+});
 
 // Delete contact
 
