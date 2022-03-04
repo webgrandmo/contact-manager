@@ -1,10 +1,11 @@
-import "./App.css";
+import Header from "./layout/Header";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Contact manager</h1>
-    </div>
+    <>
+      <Header />
+      <div className="container"></div>
+    </>
   );
 }
 
